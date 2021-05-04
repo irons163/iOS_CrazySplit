@@ -8,6 +8,19 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene
+@protocol gameDelegate;
+
+@interface GameScene : SKScene<UIActionSheetDelegate>
+
+@property (weak) id<gameDelegate> gameDelegate;
+@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
+@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnMoveTimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnCreateFootboardTimeInterval;
+
+-(void)setGameRun:(bool)isrun;
+-(int)gameTime;
+
+@property int gameMode;
 
 @end

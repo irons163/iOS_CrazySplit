@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Try_Split_Blade
+
+  Created by irons on 2015/9/15.
+  Copyright (c) 2015年 irons. All rights reserved.
+*/
+
+"InfinityMode" = "无限金钱模式";
+"BreakthroughMode" = "无限火球模式";
+
+"cat_shoot_ad" = "cn_attack_on_gaint_cat_ad.jpg";

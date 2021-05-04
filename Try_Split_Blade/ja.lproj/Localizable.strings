@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Try_Split_Blade
+
+  Created by irons on 2015/9/15.
+  Copyright (c) 2015年 irons. All rights reserved.
+*/
+
+"InfinityMode" = "無制限の宝物モード";
+"BreakthroughMode" = "無制限の火の玉モード";
+
+"cat_shoot_ad" = "jp_attack_on_gaint_cat_ad.jpg";
