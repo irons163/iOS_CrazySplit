@@ -7,7 +7,6 @@
 //
 
 #import "GameViewController.h"
-//#import "GameScene.h"
 #import "GameCenterUtil.h"
 
 @implementation SKScene (Unarchive)
@@ -32,19 +31,14 @@
 GameScene *scene;
 
 @implementation GameViewController{
-    
-    ADBannerView * adBannerView;
-    
+    ADBannerView *adBannerView;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;
-    //    skView.showsFPS = YES;
-    //    skView.showsNodeCount = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = YES;
     
@@ -62,7 +56,7 @@ GameScene *scene;
     [gameCenterUtil submitAllSavedScores];
 }
 
--(void)initAndaddScene:(SKView*)skView{
+- (void)initAndaddScene:(SKView *)skView {
     // Create and configure the scene.
     int mode = scene.gameMode;
     scene = [GameScene unarchiveFromFile:@"GameScene"];
@@ -74,17 +68,16 @@ GameScene *scene;
     [skView presentScene:scene];
 }
 
--(void) showRankView{
+- (void)showRankView {
     GameCenterUtil * gameCenterUtil = [GameCenterUtil sharedInstance];
     gameCenterUtil.delegate = self;
     [gameCenterUtil isGameCenterAvailable];
-    //    [gameCenterUtil authenticateLocalUser:self];
     [gameCenterUtil showGameCenter:self];
     [gameCenterUtil submitAllSavedScores];
 }
 
--(void)showGameOver{
-    //    return;
+- (void)showGameOver {
+    
     GameOverViewController* gameOverDialogViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverViewController"];
     gameOverDialogViewController.gameDelegate = self;
     
@@ -96,27 +89,24 @@ GameScene *scene;
     [gameOverDialogViewController setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     
     [self presentViewController:gameOverDialogViewController animated:YES completion:^{
-        //        [reset];
+        
     }];
-    
 }
 
--(void)restartGame{
-    SKView * skView = (SKView *)self.view;
+- (void)restartGame {
+    SKView *skView = (SKView *)self.view;
     [self initAndaddScene:skView];
 }
 
--(void)pauseGame{
+- (void)pauseGame {
     [scene setGameRun:false];
 }
 
-- (BOOL)shouldAutorotate
-{
+- (BOOL)shouldAutorotate {
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
+- (NSUInteger)supportedInterfaceOrientations {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
     } else {
@@ -124,8 +114,7 @@ GameScene *scene;
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
@@ -134,36 +123,26 @@ GameScene *scene;
     return YES;
 }
 
--(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     [self layoutAnimated:true];
 }
 
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    //    [adBannerView removeFromSuperview];
-    //    adBannerView.delegate = nil;
-    //    adBannerView = nil;
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     [self layoutAnimated:true];
 }
 
--(BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
-    //    [MyScene setAllGameRun:NO];
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    
     return true;
 }
 
-- (void)layoutAnimated:(BOOL)animated
-{
-    //    CGRect contentFrame = self.view.bounds;
-    
+- (void)layoutAnimated:(BOOL)animated {
     CGRect contentFrame = self.view.bounds;
-    //    contentFrame.origin.y = -50;
     CGRect bannerFrame = adBannerView.frame;
-    if (adBannerView.bannerLoaded)
-    {
-        //        contentFrame.size.height -= adBannerView.frame.size.height;
+    if (adBannerView.bannerLoaded) {
         contentFrame.size.height = 0;
         bannerFrame.origin.y = contentFrame.size.height;
     } else {
-        //        bannerFrame.origin.y = contentFrame.size.height;
         bannerFrame.origin.y = -50;
     }
     
@@ -174,7 +153,7 @@ GameScene *scene;
     }];
 }
 
-+(GameScene*)GameScene{
++ (GameScene *)GameScene {
     return scene;
 }
 

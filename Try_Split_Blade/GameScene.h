@@ -18,9 +18,9 @@
 @property (nonatomic) NSTimeInterval lastSpawnMoveTimeInterval;
 @property (nonatomic) NSTimeInterval lastSpawnCreateFootboardTimeInterval;
 
--(void)setGameRun:(bool)isrun;
--(int)gameTime;
-
 @property int gameMode;
+
+- (void)setGameRun:(bool)isrun;
+- (int)gameTime;
 
 @end

@@ -13,7 +13,7 @@ typedef enum {
     COIN_10,
     COIN_30,
     COIN_50
-}CLEARABLE_TPYE;
+} CLEARABLE_TPYE;
 
 @interface ClearableSprite : SKSpriteNode
 

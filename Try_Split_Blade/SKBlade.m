@@ -30,10 +30,8 @@
 
 @implementation SKBlade
 
-- (instancetype)initWithPosition:(CGPoint)position TargetNode:(SKNode *)target Color:(UIColor *)color
-{
-    if (self = [super init])
-    {
+- (instancetype)initWithPosition:(CGPoint)position TargetNode:(SKNode *)target Color:(UIColor *)color {
+    if (self = [super init]) {
         self.position = position;
         
         SKSpriteNode *tip = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(25, 25)];
@@ -52,8 +50,7 @@
     return self;
 }
 
-- (void)enablePhysicsWithCategoryBitmask:(uint32_t)category ContactTestBitmask:(uint32_t)contact CollisionBitmask:(uint32_t)collision
-{
+- (void)enablePhysicsWithCategoryBitmask:(uint32_t)category ContactTestBitmask:(uint32_t)contact CollisionBitmask:(uint32_t)collision {
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16];
     self.physicsBody.categoryBitMask = category;
     self.physicsBody.contactTestBitMask = contact;
@@ -61,8 +58,7 @@
     self.physicsBody.dynamic = NO;
 }
 
-- (SKEmitterNode *)EmitterNodeWithColor:(UIColor *)color
-{
+- (SKEmitterNode *)EmitterNodeWithColor:(UIColor *)color {
     SKEmitterNode *emitterNode = [SKEmitterNode new];
     emitterNode.particleTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"spark.png"]];
     emitterNode.particleBirthRate = 3000;

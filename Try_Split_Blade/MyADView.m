@@ -8,24 +8,19 @@
 
 #import "MyADView.h"
 
-@implementation MyADView{
-//    SKTexture * ad1, * ad2, *ad3;
-    NSArray* ads, *adsUrl;
+@implementation MyADView {
+    NSArray *ads, *adsUrl;
     int adIndex;
-    SKSpriteNode* button;
+    SKSpriteNode *button;
 }
 
-//+(instancetype)spriteNodeWithTexture:(SKTexture *)texture{
-//    
-//}
-
--(void)startAd{
-    
-    NSString* catAdImageName;
+- (void)startAd {
+    NSString *catAdImageName;
     int randomCatAd = arc4random_uniform(2);
-    if(randomCatAd==0){
+    
+    if (randomCatAd==0) {
         catAdImageName = @"unlimited_cat_world_ad";
-    }else{
+    } else {
         catAdImageName = @"UnlimitedCatWorld_ad";
     }
     
@@ -37,18 +32,15 @@
            [SKTexture textureWithImageNamed:catAdImageName],nil];
     
     adsUrl = [NSArray arrayWithObjects:@"http://itunes.apple.com/us/app/good-sleeper-counting-sheep/id998186214?l=zh&ls=1&mt=8", @"http://itunes.apple.com/us/app/attack-on-giant-cat/id1000152033?l=zh&ls=1&mt=8", @"https://itunes.apple.com/us/app/2048-chinese-zodiac/id1024333772?l=zh&ls=1&mt=8",@"https://itunes.apple.com/us/app/shoot-learning-math/id1025414483?l=zh&ls=1&mt=8",@"https://itunes.apple.com/us/app/cute-dodge/id1018590182?l=zh&ls=1&mt=8",@"https://itunes.apple.com/us/app/unlimited-cat-world/id1000573724?l=zh&ls=1&mt=8", nil];
-//    ad1 = [SKTexture textureWithImageNamed:@"ad1.jpg"];
-//    ad2 = [SKTexture textureWithImageNamed:@"ad2.jpg"];
-//    ad3 = [SKTexture textureWithImageNamed:@"ad3.jpg"];
     
     adIndex = 0;
     self.texture = ads[adIndex];
     
-    NSTimer * timer =  [NSTimer scheduledTimerWithTimeInterval:2.0
-                                                        target:self
-                                                      selector:@selector(changeAd)
-                                                      userInfo:nil
-                                                       repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(changeAd)
+                                   userInfo:nil
+                                    repeats:YES];
     
     button = [SKSpriteNode spriteNodeWithImageNamed:@"btn_Close-hd"];
     button.size = CGSizeMake(30, 30);
@@ -58,45 +50,26 @@
     [self addChild:button];
 }
 
--(void)changeAd{
-//    if(adIndex==1){
-//        self.texture = ad2;
-//        adIndex = 2;
-//    }else if(adIndex==2){
-//        self.texture = ad3;
-//        adIndex = 3;
-//    }else if(adIndex==3){
-//        self.texture = ad1;
-//        adIndex = 1;
-//    }
-    
+- (void)changeAd {
     adIndex++;
-    if(adIndex < ads.count){
+    
+    if (adIndex < ads.count) {
         self.texture = ads[adIndex];
-    }else{
+    } else {
         adIndex = 0;
         self.texture = ads[adIndex];
     }
 }
 
--(void)doClick{
-//    if(adIndex==1){
-//        [];
-//    }else if(adIndex==2){
-//        
-//    }else if(adIndex==3){
-//        
-//    }
-    
+- (void)doClick {
     NSString* url = adsUrl[adIndex];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if(self.hidden)
         return;
-        
+    
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
@@ -106,15 +79,5 @@
         [self doClick];
     }
 }
-
-//-(void)init{
-//    MyADView ad = [MyADView spriteNodeWithColor:[UIColor redColor] size:{10,10}];
-//    
-//    [ad childFunction];
-//}
-//
-//+ (id)spriteNodeWithColor:(UIColor*)color size:(CGSize)size {
-//    return [[SKSpriteNode init] autorelease];
-//}
 
 @end
