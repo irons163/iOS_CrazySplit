@@ -12,9 +12,7 @@
 @implementation SKScene (Unarchive)
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
-    /* Retrieve scene file path from the application bundle */
     NSString *nodePath = [[NSBundle mainBundle] pathForResource:file ofType:@"sks"];
-    /* Unarchive the file to an SKScene object */
     NSData *data = [NSData dataWithContentsOfFile:nodePath
                                           options:NSDataReadingMappedIfSafe
                                             error:nil];
@@ -37,7 +35,6 @@ GameScene *scene;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Configure the view.
     SKView * skView = (SKView *)self.view;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = YES;
@@ -57,19 +54,17 @@ GameScene *scene;
 }
 
 - (void)initAndaddScene:(SKView *)skView {
-    // Create and configure the scene.
     int mode = scene.gameMode;
     scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.size = self.view.frame.size;
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.gameDelegate = self;
     scene.gameMode = mode;
-    // Present the scene.
     [skView presentScene:scene];
 }
 
 - (void)showRankView {
-    GameCenterUtil * gameCenterUtil = [GameCenterUtil sharedInstance];
+    GameCenterUtil *gameCenterUtil = [GameCenterUtil sharedInstance];
     gameCenterUtil.delegate = self;
     [gameCenterUtil isGameCenterAvailable];
     [gameCenterUtil showGameCenter:self];
@@ -77,8 +72,7 @@ GameScene *scene;
 }
 
 - (void)showGameOver {
-    
-    GameOverViewController* gameOverDialogViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverViewController"];
+    GameOverViewController *gameOverDialogViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverViewController"];
     gameOverDialogViewController.gameDelegate = self;
     
     gameOverDialogViewController.gameTime = scene.gameTime;

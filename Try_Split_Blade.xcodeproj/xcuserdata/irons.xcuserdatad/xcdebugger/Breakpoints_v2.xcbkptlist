@@ -26,8 +26,8 @@
             timestampString = "464005993.666067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-didMoveToView:"
             landmarkType = "7">
          </BreakpointContent>

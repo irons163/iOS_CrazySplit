@@ -11,6 +11,7 @@
 @protocol gameDelegate;
 
 @interface GameOverViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UILabel *gameTimeLabel;
 
 - (IBAction)restartClick:(id)sender;

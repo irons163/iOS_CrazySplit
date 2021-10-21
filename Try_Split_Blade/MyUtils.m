@@ -33,7 +33,7 @@ AVAudioPlayer *backgroundMusicPlayer;
     [backgroundMusicPlayer prepareToPlay];
 }
 
-+ (void)playBackgroundMusic:(NSString*)filename {
++ (void)playBackgroundMusic:(NSString *)filename {
     NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:nil];
     
     if (url == nil) {
@@ -54,19 +54,19 @@ AVAudioPlayer *backgroundMusicPlayer;
     [backgroundMusicPlayer play];
 }
 
-+ (void)backgroundMusicPlayerStop{
++ (void)backgroundMusicPlayerStop {
     [backgroundMusicPlayer stop];
 }
 
-+ (void)backgroundMusicPlayerPause{
++ (void)backgroundMusicPlayerPause {
     [backgroundMusicPlayer pause];
 }
 
-+ (void)backgroundMusicPlayerPlay{
++ (void)backgroundMusicPlayerPlay {
     [backgroundMusicPlayer play];
 }
 
-+ (BOOL)isBackgroundMusicPlayerPlaying{
++ (BOOL)isBackgroundMusicPlayerPlaying {
     return [backgroundMusicPlayer isPlaying];
 }
 

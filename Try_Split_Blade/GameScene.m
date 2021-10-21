@@ -32,7 +32,7 @@ const int NONE_MODE = -1;
 const int INFINITY_MODE = 0;
 const int BREAK_GAME_MODE = 1;
 
-@implementation GameScene{
+@implementation GameScene {
     int walkCount;
     int gameTime;
     float fireballInterval;
@@ -44,41 +44,39 @@ const int BREAK_GAME_MODE = 1;
     int gamePointX;
     int64_t gameScore;
     
-    NSTimer * theGameTimer;
+    NSTimer *theGameTimer;
     
-    SKSpriteNode * backgroundNode;
-    SKLabelNode * clearedMonsterLabel;
-    SKSpriteNode * player;
+    SKSpriteNode *backgroundNode;
+    SKLabelNode *clearedMonsterLabel;
+    SKSpriteNode *player;
     
-    SKSpriteNode * leftKey;
-    SKSpriteNode * rightKey;
-    SKSpriteNode * rankBtn;
-    SKSpriteNode * pauseBtnNode;
+    SKSpriteNode *leftKey;
+    SKSpriteNode *rightKey;
+    SKSpriteNode *rankBtn;
+    SKSpriteNode *pauseBtnNode;
     
-    NSMutableArray * fireballs;
-    NSMutableArray * footbardsByLines;
+    NSMutableArray *fireballs;
+    NSMutableArray *footbardsByLines;
     
-    NSArray * hamsterDefaultArray;
-    NSArray * rightNsArray;
-    NSArray * leftNsArray;
+    NSArray *hamsterDefaultArray;
+    NSArray *rightNsArray;
+    NSArray *leftNsArray;
     
     SKBlade *blade;
     CGPoint _delta;
     
-    SKSpriteNode * gamePointSingleNode, *gamePointTenNode,
+    SKSpriteNode *gamePointSingleNode, *gamePointTenNode,
     *gamePointHunNode, *gamePointTHUNode, *gamePoint10THUNode,
     *gamePoint100THUNode, *gamePoint1MNode, *gamePoint10MNode,
     *gamePoint100MNode, *gamePoint1BNode, *gamePoint10BNode;
-    
-    SKSpriteNode * modeBtn;
+    SKSpriteNode *modeBtn;
     
     int willChangeGameMode;
     
-    MyADView * myAdView;
+    NSMutableArray *musicBtnTextures;
+    SKSpriteNode *musicBtn;
     
-    NSMutableArray * musicBtnTextures;
-    
-    SKSpriteNode * musicBtn;
+    MyADView *myAdView;
 }
 
 - (void)initTextures {
@@ -104,57 +102,57 @@ const int BREAK_GAME_MODE = 1;
     int gamePointNodeWH = 30;
     
     gamePointX = self.frame.size.width - gamePointNodeWH;
-    int gamePointY = self.frame.size.height*6/8.0;
+    int gamePointY = self.frame.size.height * 6 / 8.0;
     
-    gamePointSingleNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:gameScore%10]];
+    gamePointSingleNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:gameScore % 10]];
     gamePointSingleNode.anchorPoint = CGPointMake(0, 0);
     gamePointSingleNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePointSingleNode.position = CGPointMake(gamePointX, gamePointY);
     
-    gamePointTenNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/10%10]];
+    gamePointTenNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 10 % 10]];
     gamePointTenNode.anchorPoint = CGPointMake(0, 0);
     gamePointTenNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePointTenNode.position = CGPointMake(gamePointX - gamePointNodeWH, gamePointY);
     
-    gamePointHunNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/100%10]];
+    gamePointHunNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 100 % 10]];
     gamePointHunNode.anchorPoint = CGPointMake(0, 0);
     gamePointHunNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePointHunNode.position = CGPointMake(gamePointX - gamePointNodeWH*2, gamePointY);
     
-    gamePointTHUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/1000%10]];
+    gamePointTHUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 1000 % 10]];
     gamePointTHUNode.anchorPoint = CGPointMake(0, 0);
     gamePointTHUNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePointTHUNode.position = CGPointMake(gamePointX - gamePointNodeWH*3, gamePointY);
     
-    gamePoint10THUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/10000%10]];
+    gamePoint10THUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 10000 % 10]];
     gamePoint10THUNode.anchorPoint = CGPointMake(0, 0);
     gamePoint10THUNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePoint10THUNode.position = CGPointMake(gamePointX - gamePointNodeWH*4, gamePointY);
     
-    gamePoint100THUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/100000%10]];
+    gamePoint100THUNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 100000 % 10]];
     gamePoint100THUNode.anchorPoint = CGPointMake(0, 0);
     gamePoint100THUNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePoint100THUNode.position = CGPointMake(gamePointX - gamePointNodeWH*5, gamePointY);
     
-    gamePoint1MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/1000000%10]];
+    gamePoint1MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 1000000 % 10]];
     gamePoint1MNode.anchorPoint = CGPointMake(0, 0);
     gamePoint1MNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
-    gamePoint1MNode.position = CGPointMake(gamePointX - gamePointNodeWH*6, gamePointY);
+    gamePoint1MNode.position = CGPointMake(gamePointX - gamePointNodeWH * 6, gamePointY);
     
-    gamePoint10MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/10000000%10]];
+    gamePoint10MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 10000000 % 10]];
     gamePoint10MNode.anchorPoint = CGPointMake(0, 0);
     gamePoint10MNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
     gamePoint10MNode.position = CGPointMake(gamePointX - gamePointNodeWH*7, gamePointY);
     
-    gamePoint100MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/100000000%10]];
+    gamePoint100MNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 100000000 % 10]];
     gamePoint100MNode.anchorPoint = CGPointMake(0, 0);
     gamePoint100MNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
-    gamePoint100MNode.position = CGPointMake(gamePointX - gamePointNodeWH*8, gamePointY);
+    gamePoint100MNode.position = CGPointMake(gamePointX - gamePointNodeWH * 8, gamePointY);
     
-    gamePoint1BNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore)/1000000000%10]];
+    gamePoint1BNode = [SKSpriteNode spriteNodeWithTexture:[self getTimeTexture:(gameScore) / 1000000000 % 10]];
     gamePoint1BNode.anchorPoint = CGPointMake(0, 0);
     gamePoint1BNode.size = CGSizeMake(gamePointNodeWH, gamePointNodeWH);
-    gamePoint1BNode.position = CGPointMake(gamePointX - gamePointNodeWH*9, gamePointY);
+    gamePoint1BNode.position = CGPointMake(gamePointX - gamePointNodeWH * 9, gamePointY);
     
     [self addChild:gamePointSingleNode];
     [self addChild:gamePointTenNode];
@@ -206,20 +204,20 @@ const int BREAK_GAME_MODE = 1;
     [[NSUserDefaults standardUserDefaults] setInteger:gameScore forKey:@"gameScore"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    gamePointSingleNode.texture = [self getTimeTexture:gameScore%10];
-    gamePointTenNode.texture = [self getTimeTexture:(gameScore)/10%10];
-    gamePointHunNode.texture = [self getTimeTexture:(gameScore)/100%10];
-    gamePointTHUNode.texture = [self getTimeTexture:(gameScore)/1000%10];
-    gamePoint10THUNode.texture = [self getTimeTexture:(gameScore)/10000%10];
-    gamePoint100THUNode.texture = [self getTimeTexture:(gameScore)/100000%10];
-    gamePoint1MNode.texture = [self getTimeTexture:(gameScore)/1000000%10];
-    gamePoint10MNode.texture = [self getTimeTexture:(gameScore)/10000000%10];
-    gamePoint100MNode.texture = [self getTimeTexture:(gameScore)/100000000%10];gamePoint1BNode.texture = [self getTimeTexture:(gameScore)/1000000000%10];
+    gamePointSingleNode.texture = [self getTimeTexture:gameScore % 10];
+    gamePointTenNode.texture = [self getTimeTexture:(gameScore) / 10 % 10];
+    gamePointHunNode.texture = [self getTimeTexture:(gameScore) / 100 % 10];
+    gamePointTHUNode.texture = [self getTimeTexture:(gameScore) / 1000 % 10];
+    gamePoint10THUNode.texture = [self getTimeTexture:(gameScore) / 10000 % 10];
+    gamePoint100THUNode.texture = [self getTimeTexture:(gameScore) / 100000 % 10];
+    gamePoint1MNode.texture = [self getTimeTexture:(gameScore) / 1000000 % 10];
+    gamePoint10MNode.texture = [self getTimeTexture:(gameScore) / 10000000 % 10];
+    gamePoint100MNode.texture = [self getTimeTexture:(gameScore) / 100000000 % 10];
+    gamePoint1BNode.texture = [self getTimeTexture:(gameScore) / 1000000000 % 10];
 }
 
 - (void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    
     fireballInterval = 0.4;
     isGameRun = true;
     isMoving = false;
@@ -255,7 +253,7 @@ const int BREAK_GAME_MODE = 1;
     
     player = [SKSpriteNode spriteNodeWithTexture:hamsterDefaultArray[PLAYER_STAY_LEFT_INDEX]];
     player.size = CGSizeMake(60, 60);
-    player.position = CGPointMake(self.frame.size.width/2, player.size.height/2 + 70);
+    player.position = CGPointMake(self.frame.size.width / 2, player.size.height / 2 + 70);
     
     [self addChild:leftKey];
     [self addChild:rightKey];
@@ -265,7 +263,7 @@ const int BREAK_GAME_MODE = 1;
     rightKey.hidden = YES;
     
     pauseBtnNode = [SKSpriteNode spriteNodeWithImageNamed:@"game_resume_btn"];
-    pauseBtnNode.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 100);
+    pauseBtnNode.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height - 100);
     pauseBtnNode.size = CGSizeMake(50, 50);
     pauseBtnNode.hidden = true;
     [self addChild:pauseBtnNode];
@@ -273,8 +271,8 @@ const int BREAK_GAME_MODE = 1;
     [self initGameTimer];
     
     myAdView = [MyADView spriteNodeWithTexture:nil];
-    myAdView.size = CGSizeMake(self.frame.size.width, self.frame.size.width/5.0f);
-    myAdView.position = CGPointMake(self.frame.size.width/2, 0);
+    myAdView.size = CGSizeMake(self.frame.size.width, self.frame.size.width / 5.0f);
+    myAdView.position = CGPointMake(self.frame.size.width / 2, 0);
     [myAdView startAd];
     myAdView.zPosition = 1;
     myAdView.anchorPoint = CGPointMake(0.5, 0);
@@ -283,19 +281,19 @@ const int BREAK_GAME_MODE = 1;
     rankBtn = [SKSpriteNode spriteNodeWithImageNamed:@"leader_board_btn"];
     rankBtn.size = CGSizeMake(42,42);
     rankBtn.anchorPoint = CGPointMake(0, 0);
-    rankBtn.position = CGPointMake(self.frame.size.width - rankBtn.size.width, self.frame.size.height/2);
+    rankBtn.position = CGPointMake(self.frame.size.width - rankBtn.size.width, self.frame.size.height / 2);
     [self addChild:rankBtn];
     
     modeBtn = [SKSpriteNode spriteNodeWithImageNamed:@"images"];
     modeBtn.size = CGSizeMake(42,42);
     modeBtn.anchorPoint = CGPointMake(0, 0);
-    modeBtn.position = CGPointMake(self.frame.size.width - modeBtn.size.width, self.frame.size.height/2 - modeBtn.size.height*2);
+    modeBtn.position = CGPointMake(self.frame.size.width - modeBtn.size.width, self.frame.size.height / 2 - modeBtn.size.height * 2);
     [self addChild:modeBtn];
     
     musicBtn = [SKSpriteNode spriteNodeWithImageNamed:@"btn_Music-hd"];
     musicBtn.size = CGSizeMake(42,42);
     musicBtn.anchorPoint = CGPointMake(0, 0);
-    musicBtn.position = CGPointMake(self.frame.size.width - musicBtn.size.width, self.frame.size.height/2 - 42);
+    musicBtn.position = CGPointMake(self.frame.size.width - musicBtn.size.width, self.frame.size.height / 2 - 42);
     [self addChild:musicBtn];
     
     NSArray* musics = [NSArray arrayWithObjects:@"am_white.mp3", @"biai.mp3", @"cafe.mp3", @"deformation.mp3", nil];
@@ -710,13 +708,9 @@ const int BREAK_GAME_MODE = 1;
     }
     
     _delta = CGPointZero;
-    
-    /* Called before each frame is rendered */
-    // 获取时间增量
-    // 如果我们运行的每秒帧数低于60，我们依然希望一切和每秒60帧移动的位移相同
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
     self.lastUpdateTimeInterval = currentTime;
-    if (timeSinceLast > 1) { // 如果上次更新后得时间增量大于1秒
+    if (timeSinceLast > 1) {
         timeSinceLast = 1.0 / 60.0;
         self.lastUpdateTimeInterval = currentTime;
     }

@@ -38,7 +38,6 @@ static GameCenterUtil *instance;
     return self;
 }
 
-//是否支持GameCenter
 - (BOOL)isGameCenterAvailable {
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
     NSString *reqSysVer = @"4.1";
@@ -48,7 +47,6 @@ static GameCenterUtil *instance;
     return (gcClass && osVersionSupported);
 }
 
-//身份验证
 - (void)authenticateLocalUser:(UIViewController *)m_viewController {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     
@@ -82,7 +80,6 @@ static GameCenterUtil *instance;
     };
 }
 
-//用户变更检测
 - (void)registerFoeAuthenticationNotification {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(authenticationChanged) name:GKPlayerAuthenticationDidChangeNotificationName object:nil];
@@ -103,11 +100,9 @@ static GameCenterUtil *instance;
     [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
         if (error != nil) {
             NSData *saveSocreData = [NSKeyedArchiver archivedDataWithRootObject:scoreReporter];
-            
-            //未能提交得分，需要保存下来后继续提交
             [self storeScoreForLater:saveSocreData];
         } else {
-            NSLog(@"提交成功");
+            NSLog(@"Success.");
         }
     }];
 }
@@ -119,7 +114,6 @@ static GameCenterUtil *instance;
     [[NSUserDefaults standardUserDefaults] setObject:savedScoresArray forKey:@"savedScores"];
 }
 
-//重新提交分数
 - (void)submitAllSavedScores {
     NSMutableArray *savedScoreArray = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"savedScores"]];
     
@@ -131,10 +125,9 @@ static GameCenterUtil *instance;
         [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
             if (error != nil) {
                 NSData *saveSocreData = [NSKeyedArchiver archivedDataWithRootObject:scoreReporter];
-                //未能提交得分，需要保存下来后继续提交
                 [self storeScoreForLater:saveSocreData];
             } else {
-                NSLog(@"提交成功");
+                NSLog(@"Success.");
             }
         }];
     }
@@ -142,16 +135,12 @@ static GameCenterUtil *instance;
 
 - (void)showGameCenter:(UIViewController *)viewController {
     GKGameCenterViewController *gameView = [[GKGameCenterViewController alloc] init];
-    if(gameView != nil){
+    if (gameView != nil) {
         gameView.gameCenterDelegate = self;
-        
-        //        [gameView setLeaderboardCategory:@"com.irons.CrazySplit"];
-        //        [gameView setLeaderboardTimeScope:GKLeaderboardTimeScopeAllTime];
-        
         [gameView setLeaderboardIdentifier:@"com.irons.CrazySplit"];
         
         [viewController presentViewController:gameView animated:YES completion:^{
-            if(self.delegate!=nil){
+            if (self.delegate != nil) {
                 [self.delegate pauseGame];
             }
         }];

@@ -8,13 +8,13 @@
 
 #import "TextureHelper.h"
 
-static NSArray * hand1Textures,  * hand2Textures, * hand3Textures, * hand4Textures;
-static NSArray * cat1Textures,  * cat2Textures, * cat3Textures, * cat4Textures, * cat5Textures;
-static SKTexture * hamster_injure;
-static SKTexture * bg01, *bg02, *bg03, *bg04, *bg05, *bg06, *bg07, *bg08, *bg09, *bg10, *bg11,*bg12,*bg13,*bg14,*bg15;
-static NSArray * bgs;
-static SKTexture * time01, *time02, *time03, *time04, *time05, *time06, *time07, *time08, *time09, *time00, *timeQ;
-static NSArray * timeScores, * timeScoresImages;
+static NSArray *hand1Textures, *hand2Textures, *hand3Textures, *hand4Textures;
+static NSArray *cat1Textures, *cat2Textures, *cat3Textures, *cat4Textures, *cat5Textures;
+static SKTexture *hamster_injure;
+static SKTexture *bg01, *bg02, *bg03, *bg04, *bg05, *bg06, *bg07, *bg08, *bg09, *bg10, *bg11,*bg12,*bg13,*bg14,*bg15;
+static NSArray *bgs;
+static SKTexture *time01, *time02, *time03, *time04, *time05, *time06, *time07, *time08, *time09, *time00, *timeQ;
+static NSArray *timeScores, *timeScoresImages;
 
 @implementation TextureHelper
 
@@ -141,15 +141,15 @@ SKTexture *temp;
     // Also why sx is incremented by a fraction.
     
     for (int i = 0; i < rowNumberOfSprites*colNumberOfSprites; i++) {
-        CGRect cutter = CGRectMake(sx, sy, sWidth/ssTexture.size.width, sHeight/ssTexture.size.height);
+        CGRect cutter = CGRectMake(sx, sy, sWidth / ssTexture.size.width, sHeight / ssTexture.size.height);
         SKTexture *temp = [SKTexture textureWithRect:cutter inTexture:ssTexture];
         [mAnimatingFrames addObject:temp];
         
-        sx+=sWidth/ssTexture.size.width;
+        sx += sWidth / ssTexture.size.width;
         
-        if ((i+1)%colNumberOfSprites == 0) {
-            sx=source.origin.x;
-            sy+=sHeight/ssTexture.size.height;
+        if ((i + 1) % colNumberOfSprites == 0) {
+            sx = source.origin.x;
+            sy += sHeight / ssTexture.size.height;
         }
     }
     

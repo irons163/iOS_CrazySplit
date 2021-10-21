@@ -18,7 +18,7 @@
     NSString *catAdImageName;
     int randomCatAd = arc4random_uniform(2);
     
-    if (randomCatAd==0) {
+    if (randomCatAd == 0) {
         catAdImageName = @"unlimited_cat_world_ad";
     } else {
         catAdImageName = @"UnlimitedCatWorld_ad";
@@ -44,9 +44,9 @@
     
     button = [SKSpriteNode spriteNodeWithImageNamed:@"btn_Close-hd"];
     button.size = CGSizeMake(30, 30);
-    button.position = CGPointMake(self.size.width/2 - button.size.width, self.size.height - button.size.height);
+    button.position = CGPointMake(self.size.width / 2 - button.size.width, self.size.height - button.size.height);
     button.anchorPoint = CGPointMake(0, 0);
-    button.zPosition =5;
+    button.zPosition = 5;
     [self addChild:button];
 }
 
@@ -62,20 +62,20 @@
 }
 
 - (void)doClick {
-    NSString* url = adsUrl[adIndex];
+    NSString *url = adsUrl[adIndex];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.hidden)
+    if (self.hidden)
         return;
     
-    UITouch * touch = [touches anyObject];
+    UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
-    if([button containsPoint:location]){
+    if ([button containsPoint:location]) {
         self.hidden = YES;
-    }else if(location.y < self.size.height){
+    } else if(location.y < self.size.height) {
         [self doClick];
     }
 }

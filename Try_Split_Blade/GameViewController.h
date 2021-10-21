@@ -22,7 +22,9 @@
 @end
 
 @protocol pauseGameDelegate <NSObject>
+
 - (void)pauseGame;
+
 @end
 
 @interface GameViewController : UIViewController<gameDelegate, pauseGameDelegate,ADBannerViewDelegate>
