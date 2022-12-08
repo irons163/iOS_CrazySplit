@@ -11,7 +11,7 @@
 static NSArray *hand1Textures, *hand2Textures, *hand3Textures, *hand4Textures;
 static NSArray *cat1Textures, *cat2Textures, *cat3Textures, *cat4Textures, *cat5Textures;
 static SKTexture *hamster_injure;
-static SKTexture *bg01, *bg02, *bg03, *bg04, *bg05, *bg06, *bg07, *bg08, *bg09, *bg10, *bg11,*bg12,*bg13,*bg14,*bg15;
+static SKTexture *bg01, *bg02, *bg03, *bg04, *bg05, *bg06, *bg07, *bg08, *bg09, *bg10, *bg11, *bg12, *bg13, *bg14, *bg15;
 static NSArray *bgs;
 static SKTexture *time01, *time02, *time03, *time04, *time05, *time06, *time07, *time08, *time09, *time00, *timeQ;
 static NSArray *timeScores, *timeScoresImages;

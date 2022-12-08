@@ -11,8 +11,6 @@
 #import "GameOverViewController.h"
 #import "GameScene.h"
 
-@import iAd;
-
 @protocol gameDelegate <NSObject>
 
 - (void)showGameOver;
@@ -27,7 +25,7 @@
 
 @end
 
-@interface GameViewController : UIViewController<gameDelegate, pauseGameDelegate,ADBannerViewDelegate>
+@interface GameViewController : UIViewController<gameDelegate, pauseGameDelegate>
 
 + (GameScene *)GameScene;
 
